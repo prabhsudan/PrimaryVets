@@ -52,5 +52,21 @@ namespace PrimaryVets.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Edit(AppointmentDetailVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Edit");
+            }
+            return View(model);
+        }
     }
 }

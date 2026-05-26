@@ -1,103 +1,100 @@
-﻿<style>
-    /* FULL PAGE CENTER */
-    .appointment-page {
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #f5f7fb;
-    }
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editable Appointment</title>
 
-    /* WIDTH CONTROL */
-    .appointment-wrapper {
-        width: 100%;
-        max-width: 800px;
-    }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-    /* BACK BUTTON */
-    .back-btn {
-        display: inline-block;
-        margin-bottom: 15px;
-        color: #333;
-        font-size: 18px;
-    }
-
-    /* HEADER */
-    .detail-header {
-        background: linear-gradient(135deg, #0d6efd, #6ea8fe);
-        border-radius: 18px;
-        padding: 25px;
-        color: white;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .icon-box {
-        width: 60px;
-        height: 60px;
-        background: rgba(255,255,255,0.2);
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 26px;
-    }
-
-    /* CARD */
-    .detail-card {
-        border-radius: 18px;
-        border: none;
-        box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-    }
-
-    /* TEXT IMPROVEMENT */
-    label {
-        font-size: 13px;
-        color: #888;
-    }
-
-    p {
-        font-size: 17px;
-        font-weight: 600;
-    }
-
-    /* BUTTONS */
-    .btn {
-        padding: 12px;
-        font-size: 15px;
-        border-radius: 10px;
-    }
-    /* TOP BAR */
-    .top-bar {
-        display: flex;
-        justify-content: flex-start; /* 👈 keeps it LEFT */
-        margin-bottom: 10px;
-    }
-
-    /* BACK BUTTON (improved look) */
-    .back-btn {
-        border: none;
-        background: white;
-        padding: 8px 12px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-        /* OPTIONAL hover */
-        .back-btn:hover {
-            background: #f1f3f5;
+    <style>
+        .appointment-page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f5f7fb;
         }
-</style>
-<!-- TOP BAR -->
-<div class="top-bar">
-    <button class="back-btn" onclick="history.back()">
-        <i class="bi bi-arrow-left"></i>
-    </button>
-</div>
-<div class="appointment-page">
+
+        .appointment-wrapper {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .back-btn {
+            border: none;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .detail-header {
+            background: linear-gradient(135deg, #0d6efd, #6ea8fe);
+            border-radius: 18px;
+            padding: 25px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        .detail-card {
+            border-radius: 18px;
+            border: none;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-size: 13px;
+            color: #888;
+        }
+
+        p {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .edit-mode {
+            display: none;
+            width: 100%;
+        }
+
+        .view-mode {
+            display: block;
+        }
+
+        textarea.edit-mode {
+            min-height: 90px;
+        }
+
+        .btn {
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
     <div class="appointment-wrapper">
 
         <!-- HEADER -->
@@ -106,8 +103,11 @@
                 <i class="bi bi-calendar-check-fill"></i>
             </div>
             <div>
-                <h3 class="mb-1">Vet Appointment</h3>
-                <small class="opacity-75">Lily – General Checkup</small>
+                <h3 class="view-mode mb-1">Vet Appointment</h3>
+                <input class="form-control edit-mode mb-2" value="Vet Appointment">
+
+                <small class="view-mode opacity-75">Lily – General Checkup</small>
+                <input class="form-control edit-mode" value="Lily – General Checkup">
             </div>
         </div>
 
@@ -119,32 +119,47 @@
 
                     <div class="col-6">
                         <label>Date</label>
-                        <p><i class="bi bi-calendar"></i> 20 May 2026</p>
+                        <p class="view-mode"><i class="bi bi-calendar"></i> 20 May 2026</p>
+                        <input type="date" class="form-control edit-mode" value="2026-05-20">
                     </div>
 
                     <div class="col-6">
                         <label>Time Slot</label>
-                        <p><i class="bi bi-clock"></i> 4:30 PM – 5:00 PM</p>
+                        <p class="view-mode"><i class="bi bi-clock"></i> 4:30 PM – 5:00 PM</p>
+                        <input type="time" class="form-control edit-mode">
                     </div>
 
                     <div class="col-6">
                         <label>Doctor</label>
-                        <p><i class="bi bi-person-badge"></i> Dr. Sharma</p>
+                        <p class="view-mode"><i class="bi bi-person-badge"></i> Dr. Sharma</p>
+                        <input type="text" class="form-control edit-mode" value="Dr. Sharma">
                     </div>
 
                     <div class="col-6">
                         <label>Pet Owner</label>
-                        <p><i class="bi bi-person"></i> Rahul Mehta</p>
+                        <p class="view-mode"><i class="bi bi-person"></i> Rahul Mehta</p>
+                        <input type="text" class="form-control edit-mode" value="Rahul Mehta">
                     </div>
 
                     <div class="col-6">
                         <label>Status</label>
-                        <p><span class="badge bg-warning text-dark">Upcoming</span></p>
+                        <p class="view-mode"><span class="badge bg-warning text-dark">Upcoming</span></p>
+                        <select class="form-select edit-mode">
+                            <option>Upcoming</option>
+                            <option>Done</option>
+                            <option>In Progress</option>
+                        </select>
                     </div>
 
                     <div class="col-6">
                         <label>Appointment Type</label>
-                        <p><i class="bi bi-heart-pulse"></i> General Checkup</p>
+                        <p class="view-mode"><i class="bi bi-heart-pulse"></i> General Checkup</p>
+                        <select class="form-select edit-mode">
+                            <option>Checkup</option>
+                            <option>Vaccination</option>
+                            <option>Surgery</option>
+                            <option>Emergency</option>
+                        </select>
                     </div>
 
                 </div>
@@ -153,27 +168,60 @@
 
                 <div>
                     <label>Reason for Visit</label>
-                    <p class="text-muted">
+                    <p class="view-mode text-muted">
                         Routine health checkup to monitor recovery and overall condition.
                     </p>
+                    <textarea class="form-control edit-mode">Routine health checkup to monitor recovery and overall condition.</textarea>
                 </div>
 
                 <div class="mt-3">
                     <label>Doctor Notes</label>
-                    <p class="text-muted">
+                    <p class="view-mode text-muted">
                         Check vitals, weight, and healing progress.
                     </p>
+                    <textarea class="form-control edit-mode">Check vitals, weight, and healing progress.</textarea>
                 </div>
+                <!-- ACTION BUTTONS -->
+                <div class="d-flex justify-content-center mt-4">
+                    <div class="d-flex gap-2 w-100" style="max-width: 600px;">
 
+                        <button id="editBtn" class="btn btn-primary flex-fill">Edit</button>
+                        <button id="saveBtn" class="btn btn-success flex-fill" style="display:none;">Save</button>
+                        <button id="cancelBtn" class="btn btn-secondary flex-fill" style="display:none;">Cancel</button>
+
+                        <button class="btn btn-success flex-fill">Complete</button>
+                        <button class="btn btn-danger flex-fill">Cancel</button>
+
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- ACTIONS -->
-        <div class="d-flex gap-3 mt-4">
-            <a href="/Appointment/Edit" class="btn btn-outline-primary flex-fill">Edit</a>
-            <button class="btn btn-success flex-fill">Complete</button>
-            <button class="btn btn-danger flex-fill">Cancel</button>
-        </div>
-
     </div>
-</div>
+
+    <script>
+        const editBtn = document.getElementById("editBtn");
+        const saveBtn = document.getElementById("saveBtn");
+        const cancelBtn = document.getElementById("cancelBtn");
+
+        function toggleEdit(isEdit) {
+
+            document.querySelectorAll(".view-mode").forEach(el => {
+                el.style.display = isEdit ? "none" : "block";
+            });
+
+            document.querySelectorAll(".edit-mode").forEach(el => {
+                el.style.display = isEdit ? "block" : "none";
+            });
+
+            editBtn.style.display = isEdit ? "none" : "inline-block";
+            saveBtn.style.display = isEdit ? "inline-block" : "none";
+            cancelBtn.style.display = isEdit ? "inline-block" : "none";
+        }
+
+        editBtn.addEventListener("click", () => toggleEdit(true));
+        cancelBtn.addEventListener("click", () => toggleEdit(false));
+    </script>
+
+</body>
+</html>

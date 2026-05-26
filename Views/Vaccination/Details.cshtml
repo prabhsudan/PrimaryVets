@@ -1,4 +1,5 @@
 ﻿<style>
+
     .header-bar {
         position: sticky;
         top: 0;
@@ -9,7 +10,6 @@
         height: 60px;
     }
 
-    /* Back button stays left */
     .back-btn {
         width: 40px;
         height: 40px;
@@ -22,7 +22,6 @@
         box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
 
-    /* PERFECT CENTER TITLE */
     .page-title {
         position: absolute;
         left: 50%;
@@ -31,7 +30,22 @@
         font-weight: 700;
         margin: 0;
     }
+
+    .edit-mode {
+        display: none;
+    }
+
+    .info-input {
+        border: none;
+        background: #f8f9fc;
+        border-radius: 10px;
+        padding: 8px 12px;
+        width: 100%;
+    }
+
 </style>
+
+<!-- HEADER -->
 <div class="sticky-top bg-white border-bottom py-2 px-3 header-bar">
 
     <button class="back-btn"
@@ -44,164 +58,373 @@
     </h2>
 
 </div>
+
 <div class="container my-4">
 
-    <!-- PET + VACCINE HEADER CARD -->
+    <!-- PET HEADER CARD -->
     <div class="card shadow-sm border-0 rounded-4 mb-4">
-        <div class="card-body d-flex align-items-center justify-content-between">
+
+        <div class="card-body d-flex align-items-center justify-content-between flex-wrap gap-3">
 
             <div class="d-flex align-items-center gap-3">
+
                 <img src="~/images/Tommy.jpg"
                      class="rounded-circle border"
-                     width="70" height="70"
+                     width="70"
+                     height="70"
                      style="object-fit:cover;" />
 
                 <div>
-                    <h5 class="mb-0 fw-bold">Tommy</h5>
-                    <small class="text-muted">Rabies Vaccine • Booster</small>
+
+                    <!-- PET NAME -->
+                    <h5 class="mb-0 fw-bold view-mode">
+                        Tommy
+                    </h5>
+
+                    <input type="text"
+                           value="Tommy"
+                           class="form-control edit-mode info-input mb-2" />
+
+                    <!-- VACCINE -->
+                    <small class="text-muted view-mode">
+                        Rabies Vaccine • Booster
+                    </small>
+
+                    <input type="text"
+                           value="Rabies Vaccine • Booster"
+                           class="form-control edit-mode info-input" />
+
                 </div>
+
             </div>
 
-            <span class="badge bg-success px-3 py-2 rounded-pill">
+            <!-- STATUS -->
+            <span class="badge bg-success px-3 py-2 rounded-pill view-mode">
                 Completed
             </span>
+
+            <select class="form-select edit-mode"
+                    style="width:160px;">
+
+                <option>Completed</option>
+                <option>Pending</option>
+                <option>In Progress</option>
+
+            </select>
+
         </div>
+
     </div>
 
-
-    <!-- INFO GRID: Vaccine Details -->
+    <!-- INFO GRID -->
     <div class="row g-3 mb-4">
 
+        <!-- Vaccine Type -->
         <div class="col-md-3">
+
             <div class="card border-0 shadow-sm rounded-4 p-3 text-center">
-                <small class="text-muted">Vaccine Type</small>
-                <h6 class="fw-bold mb-0">Rabies</h6>
+
+                <small class="text-muted">
+                    Vaccine Type
+                </small>
+
+                <h6 class="fw-bold mb-0 view-mode">
+                    Rabies
+                </h6>
+
+                <input type="text"
+                       value="Rabies"
+                       class="form-control edit-mode info-input mt-2" />
+
             </div>
+
         </div>
 
+        <!-- Dose -->
         <div class="col-md-3">
+
             <div class="card border-0 shadow-sm rounded-4 p-3 text-center">
-                <small class="text-muted">Dose</small>
-                <h6 class="fw-bold mb-0">2nd Booster</h6>
+
+                <small class="text-muted">
+                    Dose
+                </small>
+
+                <h6 class="fw-bold mb-0 view-mode">
+                    2nd Booster
+                </h6>
+
+                <input type="text"
+                       value="2nd Booster"
+                       class="form-control edit-mode info-input mt-2" />
+
             </div>
+
         </div>
 
+        <!-- Date -->
         <div class="col-md-3">
+
             <div class="card border-0 shadow-sm rounded-4 p-3 text-center">
-                <small class="text-muted">Date</small>
-                <h6 class="fw-bold mb-0">16 May 2026</h6>
+
+                <small class="text-muted">
+                    Date
+                </small>
+
+                <h6 class="fw-bold mb-0 view-mode">
+                    16 May 2026
+                </h6>
+
+                <input type="date"
+                       class="form-control edit-mode info-input mt-2" />
+
             </div>
+
         </div>
 
+        <!-- Next Due -->
         <div class="col-md-3">
+
             <div class="card border-0 shadow-sm rounded-4 p-3 text-center">
-                <small class="text-muted">Next Due</small>
-                <h6 class="fw-bold mb-0 text-warning">22 May 2026</h6>
+
+                <small class="text-muted">
+                    Next Due
+                </small>
+
+                <h6 class="fw-bold mb-0 text-warning view-mode">
+                    22 May 2026
+                </h6>
+
+                <input type="date"
+                       class="form-control edit-mode info-input mt-2" />
+
             </div>
+
         </div>
 
     </div>
 
-
-    <!-- PET | OWNER INFO -->
+    <!-- PET & OWNER INFO -->
     <div class="card border-0 shadow-sm rounded-4 mb-4">
+
         <div class="card-body">
 
-            <h6 class="fw-bold mb-3">Pet & Owner Info</h6>
+            <h6 class="fw-bold mb-3">
+                Pet & Owner Info
+            </h6>
 
             <div class="row">
+
+                <!-- PET -->
                 <div class="col-md-6">
-                    <p class="mb-1"><strong>Pet:</strong> Tommy (Dog)</p>
-                    <p class="mb-0"><strong>Breed:</strong> Labrador</p>
+
+                    <div class="view-mode">
+
+                        <p class="mb-1">
+                            <strong>Pet:</strong> Tommy (Dog)
+                        </p>
+
+                        <p class="mb-0">
+                            <strong>Breed:</strong> Labrador
+                        </p>
+
+                    </div>
+
+                    <div class="edit-mode">
+
+                        <input type="text"
+                               value="Tommy (Dog)"
+                               class="form-control mb-2 info-input" />
+
+                        <input type="text"
+                               value="Labrador"
+                               class="form-control info-input" />
+
+                    </div>
+
                 </div>
 
+                <!-- OWNER -->
                 <div class="col-md-6">
-                    <p class="mb-1"><strong>Owner:</strong> Rahul Sharma</p>
-                    <p class="mb-0"><strong>Contact:</strong> +91 98XXXXXX21</p>
+
+                    <div class="view-mode">
+
+                        <p class="mb-1">
+                            <strong>Owner:</strong> Rahul Sharma
+                        </p>
+
+                        <p class="mb-0">
+                            <strong>Contact:</strong> +91 98XXXXXX21
+                        </p>
+
+                    </div>
+
+                    <div class="edit-mode">
+
+                        <input type="text"
+                               value="Rahul Sharma"
+                               class="form-control mb-2 info-input" />
+
+                        <input type="text"
+                               value="+91 98XXXXXX21"
+                               class="form-control info-input" />
+
+                    </div>
+
                 </div>
+
             </div>
 
         </div>
-    </div>
 
+    </div>
 
     <!-- DOCTOR INFO -->
     <div class="card border-0 shadow-sm rounded-4 mb-4">
+
         <div class="card-body">
 
-            <h6 class="fw-bold mb-3">Doctor Info</h6>
+            <h6 class="fw-bold mb-3">
+                Doctor Info
+            </h6>
 
             <div class="d-flex align-items-center gap-3">
+
                 <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
                      style="width:50px;height:50px;">
+
                     DR
+
                 </div>
 
                 <div>
-                    <h6 class="mb-0">Dr. Mehta</h6>
-                    <small class="text-muted">Veterinary Specialist</small>
+
+                    <div class="view-mode">
+
+                        <h6 class="mb-0">
+                            Dr. Mehta
+                        </h6>
+
+                        <small class="text-muted">
+                            Veterinary Specialist
+                        </small>
+
+                    </div>
+
+                    <div class="edit-mode">
+
+                        <input type="text"
+                               value="Dr. Mehta"
+                               class="form-control mb-2 info-input" />
+
+                        <input type="text"
+                               value="Veterinary Specialist"
+                               class="form-control info-input" />
+
+                    </div>
+
                 </div>
+
             </div>
 
         </div>
+
     </div>
 
+    <!-- EDIT MODE TIMELINE -->
+    <div class="timeline-view view-mode">
 
-    <!-- STATUS TIMELINE -->
-    <div class="card border-0 shadow-sm rounded-4 mb-4">
-        <div class="card-body">
+        <ul class="list-group list-group-flush" id="timelineViewList">
 
-            <h6 class="fw-bold mb-3">Status Timeline</h6>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Registered & Vaccine Given</span>
+                <small class="text-muted">10 May</small>
+            </li>
 
-            <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Vaccine Given</span>
+                <small class="text-muted">16 May</small>
+            </li>
 
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>Registered & Vacine Given</span>
-                    <small class="text-muted">10 May</small>
-                </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Vaccine Pending</span>
+                <small class="text-muted">22 May</small>
+            </li>
 
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>Vaccine Given</span>
-                    <small class="text-muted">16 May</small>
-                </li>
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>Vaccine Pending</span>
-                    <small class="text-muted">22 May</small>
-                </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Completed</span>
+                <small class="text-success fw-bold">(2/3)</small>
+            </li>
 
-                <li class="list-group-item d-flex justify-content-between">
-                    <span>Completed</span>
-                    <small class="text-success fw-bold">(2/3)</small>
-                </li>
+        </ul>
 
-            </ul>
+    </div>
+    <div class="timeline-edit edit-mode" style="display:none;">
+
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h6 class="fw-bold mb-0">Status Timeline</h6>
+
+                    <button type="button"
+                            class="btn btn-sm btn-primary"
+                            id="addTimelineBtn">
+                        + Add Step
+                    </button>
+
+                </div>
+
+                <!-- EMPTY CONTAINER (IMPORTANT) -->
+                <ul class="list-group list-group-flush"
+                    id="timelineList">
+                </ul>
+
+            </div>
 
         </div>
-    </div>
 
+    </div>
 
     <!-- NOTES -->
     <div class="card border-0 shadow-sm rounded-4 mb-4">
+
         <div class="card-body">
 
-            <h6 class="fw-bold mb-2">Notes</h6>
-            <p class="mb-0 text-muted">
+            <h6 class="fw-bold mb-2">
+                Notes
+            </h6>
+
+            <p class="mb-0 text-muted view-mode">
                 No side effects observed. Pet is healthy and active after vaccination.
             </p>
 
+            <textarea class="form-control edit-mode"
+                      rows="4">No side effects observed. Pet is healthy and active after vaccination.</textarea>
+
         </div>
+
     </div>
 
-
     <!-- ACTION BUTTONS -->
-    <div class="d-flex gap-2 justify-content-end">
+    <div class="d-flex gap-2 justify-content-end flex-wrap">
 
-        <button class="btn btn-outline-primary rounded-3">
+        <button id="editBtn"
+                class="btn btn-primary rounded-3">
             Edit
         </button>
 
-        <button class="btn btn-success rounded-3">
-            Add Reminder
+        <button id="saveBtn"
+                class="btn btn-success rounded-3"
+                style="display:none;">
+            Save
+        </button>
+
+        <button id="cancelBtn"
+                class="btn btn-secondary rounded-3"
+                style="display:none;">
+            Cancel
         </button>
 
         <button class="btn btn-danger rounded-3">
@@ -211,3 +434,99 @@
     </div>
 
 </div>
+<script>
+
+    const editBtn = document.getElementById("editBtn");
+    const saveBtn = document.getElementById("saveBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+
+    const viewTimeline = document.querySelector(".timeline-view");
+    const editTimeline = document.querySelector(".timeline-edit");
+
+    const timelineViewList = document.getElementById("timelineViewList");
+    const timelineList = document.getElementById("timelineList");
+    const addTimelineBtn = document.getElementById("addTimelineBtn");
+
+    // ================= EDIT CLICK =================
+    editBtn.addEventListener("click", function () {
+
+        document.querySelectorAll(".view-mode").forEach(el => el.style.display = "none");
+        document.querySelectorAll(".edit-mode").forEach(el => el.style.display = "block");
+
+        viewTimeline.style.display = "none";
+        editTimeline.style.display = "block";
+
+        // IMPORTANT: COPY ALL ITEMS
+        timelineList.innerHTML = "";
+
+        timelineViewList.querySelectorAll("li").forEach(item => {
+
+            const title = item.querySelector("span").innerText;
+            const date = item.querySelector("small").innerText;
+
+            const li = document.createElement("li");
+            li.className = "list-group-item d-flex align-items-center timeline-item";
+
+            li.innerHTML = `
+                <input type="text" class="form-control me-2" value="${title}" />
+                <input type="text" class="form-control me-2" value="${date}" style="max-width:160px;" />
+                <button type="button" class="btn btn-sm btn-danger remove-btn">Remove</button>
+            `;
+
+            timelineList.appendChild(li);
+        });
+
+        attachRemoveEvents();
+
+        editBtn.style.display = "none";
+        saveBtn.style.display = "inline-block";
+        cancelBtn.style.display = "inline-block";
+    });
+
+    // ================= CANCEL CLICK =================
+    cancelBtn.addEventListener("click", function () {
+
+        document.querySelectorAll(".view-mode").forEach(el => el.style.display = "block");
+        document.querySelectorAll(".edit-mode").forEach(el => el.style.display = "none");
+
+        viewTimeline.style.display = "block";
+        editTimeline.style.display = "none";
+
+        editBtn.style.display = "inline-block";
+        saveBtn.style.display = "none";
+        cancelBtn.style.display = "none";
+    });
+
+    // ================= ADD NEW STEP =================
+    if (addTimelineBtn) {
+
+        addTimelineBtn.addEventListener("click", function () {
+
+            const li = document.createElement("li");
+            li.className = "list-group-item d-flex align-items-center timeline-item";
+
+            li.innerHTML = `
+                <input type="text" class="form-control me-2" placeholder="Step name" />
+                <input type="text" class="form-control me-2" placeholder="Date" style="max-width:160px;" />
+                <button type="button" class="btn btn-sm btn-danger remove-btn">Remove</button>
+            `;
+
+            timelineList.appendChild(li);
+
+            attachRemoveEvents();
+        });
+    }
+
+    // ================= REMOVE STEP =================
+    function attachRemoveEvents() {
+
+        document.querySelectorAll(".remove-btn").forEach(btn => {
+
+            btn.onclick = function () {
+                this.closest(".timeline-item").remove();
+            };
+
+        });
+    }
+
+</script>

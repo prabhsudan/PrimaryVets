@@ -3,6 +3,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        .stat-card-link {
+            text-decoration: none !important;
+            color: inherit !important;
+            display: block;
+        }
+
+            .stat-card-link:hover {
+                text-decoration: none !important;
+                color: inherit !important;
+            }
+
+        .stat-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .stat-card-link:hover .stat-card {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+        }
+    </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - PrimeVets</title>
@@ -21,25 +42,31 @@
 }
 
 <body>
-    
+     <div class="topbar-left">
+         <button class="menu-btn" id="menuToggle"> ☰ </button> 
+     </div>
     <div class="dashboard">
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
+                <a href="/Dashboard/Index" class="stat-card-link">
 
-                <button class="menu-btn" id="menuToggle">
-                    <i class="bi bi-list"></i>
-                </button>
+                    <div class="logo-section">
+                        <img src="~/images/Prime_vets_logo.png"
+                             alt="Logo" />
 
-                <div class="logo-section">
+                        <h5>PrimeVets</h5>
+                    </div>
+                </a>
+                @* <div class="logo-section">
                     <img src="~/images/Prime_vets_logo.png"
                          alt="Logo" />
 
                     <h5>PrimeVets</h5>
-                </div>
+                </div> *@
 
             </div>
 
-            <ul>
+            @* <ul>
 
                 <li class="@(currentController == "Dashboard" ? "active" : "")">
                     <a asp-controller="Dashboard" asp-action="Index">
@@ -50,7 +77,7 @@
                     </a>
                 </li>
 
-            </ul>
+            </ul> *@
 
              <ul>
                 <li class="@(currentController == "PetRegistration" ? "active" : "")">
@@ -159,8 +186,7 @@
 
     </div>
     <script>
-        // Sidebar Toggle
-        document.getElementById("menuToggle").addEventListener("click", function () {
+         document.getElementById("menuToggle").addEventListener("click", function () {
             document.getElementById("sidebar").classList.toggle("active");
         });
 
@@ -180,9 +206,9 @@
 
         window.onload = resetTimer;
         document.onmousemove = resetTimer;
-        document.onkeypress = resetTimer;
         document.onclick = resetTimer;
         document.onscroll = resetTimer;
+        document.addEventListener("keydown", resetTimer);
     </script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

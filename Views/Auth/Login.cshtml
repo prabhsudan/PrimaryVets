@@ -49,7 +49,7 @@
 
         .form-control:focus {
             border-color: #0D52BD !important;
-            box-shadow: 0 0 0 0.15rem rgba(255, 179, 0, 0.25) !important;
+            box-shadow: 0 0 0 0.15rem rgba(13, 82, 189, 0.25) !important;
         }
 
         .form-floating label {
@@ -126,14 +126,26 @@
             }
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="name" name="name" placeholder="Name" autocomplete="name" required>
-                <label for="name">Username</label>
+                <input type="text"
+                       class="form-control"
+                       id="username"
+                       name="username"
+                       placeholder="Username"
+                       required>
+                <label for="username">Username</label>
             </div>
 
             <div class="form-floating mb-3 position-relative">
-                <input type="password" class="form-control" id="password" name="Password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7" ; autocomplete="password" required>
+                <input type="password"
+                       class="form-control"
+                       id="password"
+                       name="password"
+                       placeholder="Password"
+                       required>
                 <label for="password">Password</label>
-                <span class="position-absolute top-50 end-0 translate-middle-y pe-3 cursor-pointer" onclick="togglePassword('password','eyeIcon1')">
+
+                <span class="position-absolute top-50 end-0 translate-middle-y pe-3 cursor-pointer"
+                      onclick="togglePassword('password','eyeIcon1')">
                     <i id="eyeIcon1" class="ri-eye-off-line"></i>
                 </span>
             </div>

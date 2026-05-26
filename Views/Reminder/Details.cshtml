@@ -1,4 +1,13 @@
-﻿<style>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Detail Page Editable</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
     .detail-header {
         background: linear-gradient(135deg, #0d6efd, #6ea8fe);
         border-radius: 16px;
@@ -33,11 +42,23 @@
         display: block;
     }
 
-    p {
-        font-weight: 500;
-        margin-bottom: 0;
+    .edit-mode {
+        display: none;
+        width: 100%;
+    }
+
+    .view-mode {
+        display: block;
+    }
+
+    textarea.edit-mode {
+        min-height: 90px;
     }
 </style>
+</head>
+
+<body>
+
 <div class="container mt-4">
 
     <!-- HEADER -->
@@ -60,56 +81,115 @@
 
                 <div class="col-md-6">
                     <label>Date</label>
-                    <p><i class="bi bi-calendar"></i> 20 May 2026</p>
+
+                    <p class="view-mode"><i class="bi bi-calendar"></i> 20 May 2026</p>
+                    <input class="form-control edit-mode" value="20 May 2026">
                 </div>
 
                 <div class="col-md-6">
                     <label>Time</label>
-                    <p><i class="bi bi-clock"></i> 4:30 PM</p>
+
+                    <p class="view-mode"><i class="bi bi-clock"></i> 4:30 PM</p>
+                    <input class="form-control edit-mode" value="4:30 PM">
                 </div>
 
                 <div class="col-md-6">
                     <label>Treatment</label>
-                    <p><i class="bi bi-geo-alt"></i> Check Up</p>
+
+                    <p class="view-mode"><i class="bi bi-geo-alt"></i> Check Up</p>
+                    <input class="form-control edit-mode" value="Check Up">
                 </div>
 
                 <div class="col-md-6">
                     <label>Status</label>
-                    <p><span class="badge bg-warning text-dark">Upcoming</span></p>
+
+                    <p class="view-mode">
+                        <span class="badge bg-warning text-dark">Upcoming</span>
+                    </p>
+
+                    <select class="form-select edit-mode">
+                        <option>Upcoming</option>
+                        <option>Completed</option>
+                        <option>Cancelled</option>
+                    </select>
                 </div>
 
             </div>
 
-            <!-- DESCRIPTION -->
             <hr />
+
+            <!-- DESCRIPTION -->
             <div>
                 <label>Description</label>
-                <p class="text-muted">
+
+                <p class="text-muted view-mode">
                     This is the final recovery checkup after surgery.
                     Ensure proper healing and monitor vitals.
                 </p>
+
+                <textarea class="form-control edit-mode">This is the final recovery checkup after surgery.Ensure proper healing and monitor vitals.</textarea>
             </div>
 
             <!-- NOTES -->
             <div class="mt-3">
                 <label>Notes</label>
-                <p class="text-muted">
+
+                <p class="text-muted view-mode">
                     Pet is recovering well. Keep activity limited.
                 </p>
+
+                <textarea class="form-control edit-mode">Pet is recovering well. Keep activity limited.</textarea>
             </div>
 
+                <div class="d-flex justify-content-center mt-4">
+                    <div class="d-flex gap-2 w-100" style="max-width: 600px;">
+
+                        <button id="editBtn" class="btn btn-primary flex-fill">
+                            Edit
+                        </button>
+
+                        <button id="saveBtn" class="btn btn-success flex-fill" style="display:none;">
+                            Save
+                        </button>
+
+                        <button id="cancelBtn" class="btn btn-secondary flex-fill" style="display:none;">
+                            Cancel
+                        </button>
+
+                        <button class="btn btn-success flex-fill">
+                            Mark as Done
+                        </button>
+
+                    </div>
+                </div>
         </div>
     </div>
 
-    <!-- ACTION BUTTONS -->
-    <div class="d-flex gap-3 mt-4">
-        <a href="/Reminder/Edit" class="btn btn-outline-primary w-50">
-            <i class="bi bi-pencil"></i> Edit
-        </a>
-
-        <button class="btn btn-success w-50">
-            <i class="bi bi-check-circle"></i> Mark as Done
-        </button>
-    </div>
-
 </div>
+
+<script>
+const editBtn = document.getElementById("editBtn");
+const saveBtn = document.getElementById("saveBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+
+function toggleEdit(isEdit) {
+
+    document.querySelectorAll(".view-mode").forEach(el => {
+        el.style.display = isEdit ? "none" : "block";
+    });
+
+    document.querySelectorAll(".edit-mode").forEach(el => {
+        el.style.display = isEdit ? "block" : "none";
+    });
+
+    editBtn.style.display = isEdit ? "none" : "inline-block";
+    saveBtn.style.display = isEdit ? "inline-block" : "none";
+    cancelBtn.style.display = isEdit ? "inline-block" : "none";
+}
+
+editBtn.addEventListener("click", () => toggleEdit(true));
+cancelBtn.addEventListener("click", () => toggleEdit(false));
+</script>
+
+</body>
+</html>

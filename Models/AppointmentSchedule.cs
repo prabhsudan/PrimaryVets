@@ -14,4 +14,16 @@
         public string? Name { get; set; }
         public List<AppointmentSchedule>? Schedules { get; set; }
     }
+
+    public class AppointmentDetailVM
+    {
+        public DateTime AppointmentDate { get; set; }
+        public string? TimeSlot { get; set; } 
+        public string? AppointmentType { get; set; }
+        public string? DoctorName { get; set; }
+        public string? OwnerName { get; set; }
+        public AppointmentStatus Status { get; set; }
+        public string? ReasonForVisit { get; set; }
+        public string? DoctorNotes { get; set; }
+    }
 }

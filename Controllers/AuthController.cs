@@ -20,34 +20,36 @@ namespace PrimaryVets.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
-            var user = await _userRepository.GetUserByUsernameAsync(username);
-            if (user == null)
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                ModelState.AddModelError("", "Invalid username or password.");
-                return View();
-            }
-            else if (string.IsNullOrEmpty(password))
-            {
-                ViewBag.Error = "Password is required";
-                return View();
-            }
-            else if (user.Password != password)
-            {
-                ViewBag.Error = "Invalid Password";
-                return View();
-            }
-            else if (user == null || !user.IsActive)
-            {
-                ViewBag.Error = "User not found or account is disabled";
+                ViewBag.Error = "Username and Password are required";
                 return View();
             }
 
-            else
+            var user = await _userRepository.GetUserByUsernameAsync(username);
+
+            if (user == null)
             {
-                HttpContext.Session.SetString("Email", user.Username);
-                HttpContext.Session.SetString("UserRole", user.Role);
-                HttpContext.Session.SetString("UserId", user.Id.ToString());
+                ViewBag.Error = "Invalid username or password";
+                return View();
             }
+
+            if (!user.IsActive)
+            {
+                ViewBag.Error = "User account is disabled";
+                return View();
+            }
+
+            if (user.Password != password)
+            {
+                ViewBag.Error = "Invalid password";
+                return View();
+            }
+
+            HttpContext.Session.SetString("Email", user.Username);
+            HttpContext.Session.SetString("UserRole", user.Role ?? "");
+            HttpContext.Session.SetString("UserId", user.Id.ToString());
+
             return RedirectToAction("Index", "Dashboard");
         }
 

@@ -181,13 +181,8 @@ namespace PrimaryVets.Controllers
 
             text = text.ToLower();
 
-            model.Name = Extract(text,
-                @"(?<!pet\s)name\s+is\s+(.+?)(pet name|species|gender|age|$)"
-            );
-
-            model.PetName = Extract(text,
-                @"pet\s+name\s+is\s+(.+?)(species|gender|age|$)"
-            );
+            model.Name = Extract(text, @"name\s+is\s+(.+?)(pet name|species|gender|age|$)");
+            model.PetName = Extract(text, @"pet\s+name\s+is\s+(.+?)(species|gender|age|$)");
 
             model.Species = ExtractFlexible(text,
                 @"(species\s*(is)?\s*)?(dog|cat|bird|rabbit|other)");
@@ -202,6 +197,9 @@ namespace PrimaryVets.Controllers
 
             model.Treatment = ExtractFlexible(text,
                 @"(treatment\s*(is)?\s*)?(vaccination|surgery|checkup|emergency)");
+
+            model.PetBehavior = ExtractFlexible(text,
+                @"(behavior\s*(is)?\s*)?(aggressive|calm|anxious|playful)");
 
             var age = Regex.Match(text, @"age\s*(?:is)?\s*(\d+)", RegexOptions.IgnoreCase);
             if (age.Success)

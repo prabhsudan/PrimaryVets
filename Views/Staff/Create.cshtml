@@ -1,0 +1,104 @@
+﻿@model PrimaryVets.Models.StaffVm
+@{
+    ViewData["Title"] = "Create Staff";
+}
+
+<style>
+    body {
+        background-color: #f4f6f9;
+    }
+
+    .staff-container {
+        max-width: 1000px;
+        margin: 40px auto;
+    }
+
+    .staff-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .page-title {
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+
+</style>
+
+<div class="container staff-container">
+
+    <div class="staff-card">
+
+        <div class="mb-4">
+            <h2 class="page-title">Staff Form</h2>
+            <p class="text-muted mb-0">
+                Add staff details and schedule information.
+            </p>
+        </div>
+        <hr />
+        <form asp-action="Create" asp-controller="Staff" method="post">
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-md-4">
+                    <label asp-for="Name" class="form-label"> Staff Name </label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter staff name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label asp-for="Roles" class="form-label"> Roles </label>
+                    <select asp-for="Roles" class="form-select"
+                            asp-items="Html.GetEnumSelectList<StaffRoles>()">
+
+                        <option value="" disabled selected hidden>Select Role</option>
+                    </select>
+                    <span asp-validation-for="Roles" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label asp-for="Department" class="form-label"> Department </label>
+                    <select asp-for="Department" class="form-select"
+                            asp-items="Html.GetEnumSelectList<Departments>()">
+
+                        <option value="" disabled selected hidden>Select Department</option>
+                    </select>
+                    <span asp-validation-for="Department" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-md-4">
+                    <label asp-for="Email" class="form-label"> Email </label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label asp-for="Status" class="form-label"> Status </label>
+                    <select asp-for="Roles" class="form-select"
+                            asp-items="Html.GetEnumSelectList<StaffStatus>()">
+
+                        <option value="" disabled selected hidden>Select Status</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                
+            </div>
+            
+            <div class="d-flex justify-content-center mt-4">
+                <button type="submit" class="btn btn-primary" style="width: 200px; height: 45px;">
+                    Save Staff Details
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
