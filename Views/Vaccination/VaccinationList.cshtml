@@ -1,0 +1,194 @@
+﻿<style>
+    body {
+        background: #f5f7fb;
+    }
+
+    .vaccination-table {
+        width: 100%;
+        border-collapse: collapse; /* IMPORTANT for proper borders */
+        font-size: 0.95rem;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+        .vaccination-table th,
+        .vaccination-table td {
+            border: 1px solid #e5e7eb; /* FULL GRID BORDERS */
+            padding: 0.85rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .vaccination-table th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #111;
+        }
+
+        .vaccination-table tbody tr:hover {
+            background: #f9fafb;
+            transition: 0.2s;
+        }
+
+    .status {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .completed {
+        background: #e7f8ee;
+        color: #16a34a;
+    }
+
+    .pending {
+        background: #fff7ed;
+        color: #f97316;
+    }
+
+    .overdue {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+    .action-btn {
+        border: none;
+        background: transparent;
+        color: #2563eb;
+        font-size: 14px;
+        margin: 0 4px;
+        cursor: pointer;
+    }
+
+        .action-btn:hover {
+            color: #1d4ed8;
+        }
+
+    .title {
+        text-align: center;
+        font-weight: 700;
+        margin: 20px 0;
+    }
+</style>
+
+<h2 class="title">Animal Vaccination Guidelines</h2>
+<hr />
+<div style="text-align:right; margin-bottom:15px; font-size:18px; font-weight:bold;">
+    <a asp-controller="Vaccination" asp-action="Create"
+        class="btn btn-sm btn-primary d-flex align-items-center justify-content-center"
+        style="height:40px; width:200px;">
+        Add Vaccination
+    </a>
+</div>
+<table class="vaccination-table">
+    <thead>
+        <tr>
+            <th style="width:20%">Vaccination Name</th>
+            <th style="width:20%">Use</th>
+            <th style="width:30%">Benefits</th>
+            <th style="width:10%">Stock</th>
+            <th style="width:20%">Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td style="width:20%">
+                <strong>Rabies</strong> <br>
+                <small class="text-muted">Dogs, Cats, Cattle, Horses</small>
+            </td>
+            <td style="width:20%">
+                Core Vaccine <br>
+                <small class="text-muted">All Mammals / Zoonotic Risk</small>
+            </td>
+            <td style="width:30%">Prevents a 100% fatal neurological brain virus. Required by law to protect animals and human owners.</td>
+            <td style="width:10%">25</td>
+            <td style="width:20%">
+                <a asp-controller="Vaccination" asp-action="Edit" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width:20%">
+                <strong>Canine Parvovirus (CPV)</strong> <br>
+                <small class="text-muted">Dogs & Puppies</small>
+            </td>
+            <td style="width:20%">
+                Core Vaccine <br>
+                <small class="text-muted">Highly Contagious GI Shield</small>
+            </td>
+            <td style="width:30%">Stops life-threatening viral intestinal damage, severe vomiting, bloody diarrhea, and rapid dehydration.</td>
+            <td style="width:10%">15</td>
+            <td style="width:20%">
+                <a asp-controller="Vaccination" asp-action="Edit" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width:20%">
+                <strong>Feline Panleukopenia (FPV)</strong> <br>
+                <small class="text-muted">Cats & Kittens</small>
+            </td>
+            <td>
+                Core Vaccine <br>
+                <small class="text-muted">Feline Distemper Defense</small>
+            </td>
+            <td style="width:30%">Protects gastrointestinal, nervous, and immune systems. Prevents rapid drop in white blood cell counts.</td>
+            <td style="width:10%">35</td>
+            <td style="width:20%">
+                <a asp-controller="Vaccination" asp-action="Edit" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width:20%">
+                <strong>Leptospirosis</strong> <br>
+                <small class="text-muted">Dogs & Livestock</small>
+            </td>
+            <td style="width:20%">
+                Non-Core / Lifestyle <br>
+                <small class="text-muted">Bacterial Soil/Water Risk</small>
+            </td>
+            <td style="width:30%">Prevents severe bacterial infections from wildlife urine that cause acute kidney or liver failure.</td>
+            <td style="width:10%">22</td>
+            <td style="width:20%">
+                <a asp-controller="Vaccination" asp-action="Edit" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width:20%">
+                <strong>Feline Leukemia (FeLV)</strong> <br>
+                <small class="text-muted">Cats Only</small>
+            </td>
+            <td style="width:20%">
+                Non-Core / Lifestyle <br>
+                <small class="text-muted">Outdoor/Social Exposure</small>
+            </td>
+            <td style="width:30%">Prevents an incurable immune-deficiency virus spread via saliva, fighting, and grooming behaviors.</td>
+            <td style="width:10%">10</td>
+            <td style="width:20%">
+                <a asp-controller="Vaccination" asp-action="Edit" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

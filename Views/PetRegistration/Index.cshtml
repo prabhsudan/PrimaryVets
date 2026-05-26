@@ -1,0 +1,162 @@
+﻿<style>
+    .customers-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+    }
+
+        .customers-table th {
+            text-align: center;
+            padding: 0.75rem;
+            color: black;
+            border: 1px solid grey;
+            background-color: #f8f8f8;
+        }
+
+        .customers-table td {
+            text-align: center;
+            padding: 0.6rem;
+            border: 1px solid #d1d5db;
+            vertical-align: middle;
+            background-color: white;
+        }
+
+        .customers-table tbody tr {
+            background-color: #f9fafb;
+        }
+
+    .center-cell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+    }
+</style>
+<div style="text-align: center;">
+    <h1>
+        Records
+    </h1>
+</div>
+<hr />
+
+<a asp-controller="PetRegistration"
+   asp-action="Create"
+   class="btn btn-sm btn-primary d-flex align-items-center justify-content-center"
+   style="height:40px; width:200px;">
+    Add Pet Registration
+</a>
+<br />
+<table class="customers-table">
+    <thead>
+        <tr>
+            <th class="d-none">OwnerId</th>
+            <th>PetOwner</th>
+            <th>Animal</th>
+            <th>PetName</th>
+            <th>Breed</th>
+            <th>Problem</th>
+            <th>Mobile</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <!-- Table Body Data -->
+    <tbody>
+        <tr>
+            <td class="d-none">1</td>
+            <td>Sarah Jenkins</td>
+            <td>Dog</td>
+            <td>Tommy</td>
+            <td>Labrador</td>
+            <td>Annual Vaccination</td>
+            <td>+1 555-0102</td>
+            <td><span class="badge bg-success">Completed</span></td>
+            <td>
+                <a asp-controller="PetRegistration" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <a asp-controller="Appointment" asp-action="Create" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-book-fill"></i>
+                </a>
+                <button class="btn btn-sm" style="color:#0D52BD"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="d-none">2</td>
+            <td>Michael Chen</td>
+            <td>Cat</td>
+            <td>Luna</td>
+            <td>Persian Cat</td>
+            <td>Skin Allergy</td>
+            <td>+1 555-0148</td>
+            <td><span class="badge bg-warning text-dark">Pending</span></td>
+            <td>
+                <a asp-controller="PetRegistration" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <a asp-controller="Appointment" asp-action="Create" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-book-fill"></i>
+                </a>
+                <button class="btn btn-sm" style="color:#0D52BD"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="d-none">3</td>
+            <td>Emily Davis</td>
+            <td>Dog</td>
+            <td>Max</td>
+            <td>Golden Retriever</td>
+            <td>Dental Cleaning</td>
+            <td>+1 555-0199</td>
+            <td><span class="badge bg-info">In Progress</span></td>
+            <td>
+                <a asp-controller="PetRegistration" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <a asp-controller="Appointment" asp-action="Create" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-book-fill"></i>
+                </a>
+                <button class="btn btn-sm" style="color:#0D52BD"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="d-none">4</td>
+            <td>Robert Wilson</td>
+            <td>Dog</td>
+            <td>Bella</td>
+            <td>Beagle</td>
+            <td>Ear Infection</td>
+            <td>+1 555-0123</td>
+            <td><span class="badge bg-success">Completed</span></td>
+            <td>
+                <a asp-controller="PetRegistration" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <a asp-controller="Appointment" asp-action="Create" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-book-fill"></i>
+                </a>
+                <button class="btn btn-sm" style="color:#0D52BD"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+        <tr>
+            <td class="d-none">5</td>
+            <td>Jessica Lee</td>
+            <td>Cat</td>
+            <td>Oliver</td>
+            <td>Maine Coon</td>
+            <td>Limping (Front Paw)</td>
+            <td>+1 555-0175</td>
+            <td><span class="badge bg-danger">Cancelled</span></td>
+            <td>
+                <a asp-controller="PetRegistration" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <a asp-controller="Appointment" asp-action="Create" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-book-fill"></i>
+                </a>
+                <button class="btn btn-sm" style="color:#0D52BD"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+    </tbody>
+
+</table>

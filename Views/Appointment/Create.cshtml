@@ -1,0 +1,380 @@
+﻿
+@model List<AppointmentSchedule>
+
+@{
+    ViewData["Title"] = "Create Appointment";
+}
+
+<style>
+
+    body {
+        background: #f4f4f4;
+        font-family: Arial;
+    }
+
+    .schedule-container {
+        width: 95%;
+        margin: 20px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        background: #0D52BD;
+        color: white;
+        padding: 15px;
+        text-align: center;
+    }
+
+    td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+    }
+
+    .time-column {
+        background: #f0f0f0;
+        font-weight: bold;
+        width: 120px;
+    }
+
+    .slot-box {
+        background: #e9ecef;
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+        .slot-box:hover {
+            background: #ced4da;
+        }
+
+    .add-pet-btn, .save-btn {
+        height: 45px;
+        border-radius: 6px;
+        font-weight: 600;
+    }
+
+    .add-pet-btn {
+        background: #0D52BD;
+        border: 1px solid #0D52BD;
+        color: white;
+    }
+
+    .save-btn {
+        background: #0D52BD;
+        color: white;
+        border: none;
+    }
+
+    /* Modal */
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+        background: white;
+        width: 450px;
+        margin: 5% auto;
+        padding: 25px;
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .close-btn {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    .modal-content input,
+    .modal-content textarea,
+    .modal-content select {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+</style>
+
+<div class="schedule-container">
+
+    <h2>Doctor & Staff Appointment Schedule</h2>
+
+    <div style="text-align:right; margin-bottom:15px; font-size:18px; font-weight:bold;">
+        Today's Date : @DateTime.Now.ToString("dd MMM yyyy")
+    </div>
+
+    <form asp-action="Create" asp-controller="Appointment" method="post" id="appointmentForm">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Doctor 1</th>
+                    <th>Doctor 2</th>
+                    <th>Staff 1</th>
+                    <th>Staff 2</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+
+                        <td class="time-column">
+                            @Model[i].TimeSlot
+
+                            <input type="hidden"
+                                   asp-for="@Model[i].TimeSlot" />
+                        </td>
+
+                        <!-- Doctor 1 -->
+                        <td>
+                            <div class="slot-box"
+                                 onclick="openPopup('@Model[i].TimeSlot','Doctor 1')">
+                            </div>
+                        </td>
+
+                        <!-- Doctor 2 -->
+                        <td>
+                            <div class="slot-box"
+                                 onclick="openPopup('@Model[i].TimeSlot','Doctor 2')">
+                            </div>
+                        </td>
+
+                        <!-- Staff 1 -->
+                        <td>
+                            <div class="slot-box"
+                                 onclick="openPopup('@Model[i].TimeSlot','Staff 1')">
+                            </div>
+                        </td>
+
+                        <!-- Staff 2 -->
+                        <td>
+                            <div class="slot-box"
+                                 onclick="openPopup('@Model[i].TimeSlot','Staff 2')">
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </form>
+
+</div>
+
+<!-- Modal -->
+
+<div id="appointmentModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close-btn"
+              onclick="closePopup()">
+            &times;
+        </span>
+
+        <h2>Appointment Details</h2>
+
+        <!-- Appointment Info -->
+
+        <label>Time Slot</label>
+        <input type="text"
+               id="slotTime"
+               class="form-control"
+               readonly />
+
+        <label>Doctor / Staff</label>
+        <input type="text"
+               id="slotPerson"
+               class="form-control"
+               readonly />
+
+        <label>Owner Name</label>
+        <input type="text"
+               class="form-control"
+               placeholder="Enter owner name" />
+
+        <label>Phone Number</label>
+        <input type="text"
+               class="form-control"
+               placeholder="Enter phone number" />
+
+        <!-- Multiple Pets -->
+
+        <h3>Pets Details</h3>
+
+
+        <div id="petsContainer">
+
+            <!-- First Pet -->
+
+            <div class="pet-card">
+
+                <label>Pet Name</label>
+                <input type="text"
+                       class="form-control"
+                       placeholder="Enter pet name" />
+
+                <label>Pet Type</label>
+                <select class="form-control">
+                    <option>Select Pet Type</option>
+                    <option>Dog</option>
+                    <option>Cat</option>
+                    <option>Bird</option>
+                    <option>Rabbit</option>
+                </select>
+
+                <label>Breed</label>
+                <input type="text"
+                       class="form-control"
+                       placeholder="Enter breed" />
+
+                <label>Age</label>
+                <input type="text"
+                       class="form-control"
+                       placeholder="Enter age" />
+
+                <label>Appointment Type</label>
+                <select class="form-control">
+                    <option>Select Type</option>
+                    <option>Checkup</option>
+                    <option>Vaccination</option>
+                    <option>Surgery</option>
+                    <option>Emergency</option>
+                </select>
+
+                <label>Problem / Reason</label>
+                <textarea class="form-control"
+                          rows="3"
+                          placeholder="Enter problem"></textarea>
+            </div>
+            <hr />
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:20px; gap:10px;">
+
+            <button type="button" class="add-pet-btn" onclick="addPet()"
+                    style="flex:1; max-width:200px;">
+                + Add Another Pet
+            </button>
+
+            <button type="submit"
+                    class="save-btn"
+                    style="flex:1; max-width:200px; text-align:center;">
+                Save Appointment
+            </button>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script>
+        function openPopup(time, person)
+        {
+            document.getElementById("appointmentModal").style.display = "block";
+            document.getElementById("slotTime").value = time;
+            document.getElementById("slotPerson").value = person;
+        }
+
+        function closePopup()
+        {
+            document.getElementById("appointmentModal").style.display = "none";
+        }
+
+        function addPet()
+        {
+            let petHtml = `
+
+                <div class="pet-card">
+
+                    <label>Pet Name</label>
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Enter pet name" />
+
+                    <label>Pet Type</label>
+                    <select class="form-control">
+                        <option>Select Pet Type</option>
+                        <option>Dog</option>
+                        <option>Cat</option>
+                        <option>Bird</option>
+                        <option>Rabbit</option>
+                    </select>
+
+                    <label>Breed</label>
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Enter breed" />
+
+                    <label>Age</label>
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Enter age" />
+
+                   <label>Appointment Type</label>
+                   <select class="form-control">
+                        <option>Select Type</option>
+                        <option>Checkup</option>
+                        <option>Vaccination</option>
+                        <option>Surgery</option>
+                        <option>Emergency</option>
+                   </select>
+
+                   <label>Problem / Reason</label>
+                   <textarea class="form-control"
+                              rows="3"
+                              placeholder="Enter problem"></textarea>
+                </div>
+            `;
+
+            document.getElementById("petsContainer")
+                    .insertAdjacentHTML("beforeend", petHtml);
+        }
+
+        window.onclick = function (event)
+        {
+            let modal = document.getElementById("appointmentModal");
+
+            if (event.target == modal)
+            {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+}

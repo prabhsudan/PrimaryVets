@@ -1,0 +1,179 @@
+﻿<style>
+    /* FULL PAGE CENTER */
+    .appointment-page {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f5f7fb;
+    }
+
+    /* WIDTH CONTROL */
+    .appointment-wrapper {
+        width: 100%;
+        max-width: 800px;
+    }
+
+    /* BACK BUTTON */
+    .back-btn {
+        display: inline-block;
+        margin-bottom: 15px;
+        color: #333;
+        font-size: 18px;
+    }
+
+    /* HEADER */
+    .detail-header {
+        background: linear-gradient(135deg, #0d6efd, #6ea8fe);
+        border-radius: 18px;
+        padding: 25px;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .icon-box {
+        width: 60px;
+        height: 60px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+    }
+
+    /* CARD */
+    .detail-card {
+        border-radius: 18px;
+        border: none;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    }
+
+    /* TEXT IMPROVEMENT */
+    label {
+        font-size: 13px;
+        color: #888;
+    }
+
+    p {
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+    /* BUTTONS */
+    .btn {
+        padding: 12px;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+    /* TOP BAR */
+    .top-bar {
+        display: flex;
+        justify-content: flex-start; /* 👈 keeps it LEFT */
+        margin-bottom: 10px;
+    }
+
+    /* BACK BUTTON (improved look) */
+    .back-btn {
+        border: none;
+        background: white;
+        padding: 8px 12px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        /* OPTIONAL hover */
+        .back-btn:hover {
+            background: #f1f3f5;
+        }
+</style>
+<!-- TOP BAR -->
+<div class="top-bar">
+    <button class="back-btn" onclick="history.back()">
+        <i class="bi bi-arrow-left"></i>
+    </button>
+</div>
+<div class="appointment-page">
+    <div class="appointment-wrapper">
+
+        <!-- HEADER -->
+        <div class="detail-header shadow-sm">
+            <div class="icon-box">
+                <i class="bi bi-calendar-check-fill"></i>
+            </div>
+            <div>
+                <h3 class="mb-1">Vet Appointment</h3>
+                <small class="opacity-75">Lily – General Checkup</small>
+            </div>
+        </div>
+
+        <!-- CARD -->
+        <div class="card detail-card mt-4">
+            <div class="card-body">
+
+                <div class="row g-4">
+
+                    <div class="col-6">
+                        <label>Date</label>
+                        <p><i class="bi bi-calendar"></i> 20 May 2026</p>
+                    </div>
+
+                    <div class="col-6">
+                        <label>Time Slot</label>
+                        <p><i class="bi bi-clock"></i> 4:30 PM – 5:00 PM</p>
+                    </div>
+
+                    <div class="col-6">
+                        <label>Doctor</label>
+                        <p><i class="bi bi-person-badge"></i> Dr. Sharma</p>
+                    </div>
+
+                    <div class="col-6">
+                        <label>Pet Owner</label>
+                        <p><i class="bi bi-person"></i> Rahul Mehta</p>
+                    </div>
+
+                    <div class="col-6">
+                        <label>Status</label>
+                        <p><span class="badge bg-warning text-dark">Upcoming</span></p>
+                    </div>
+
+                    <div class="col-6">
+                        <label>Appointment Type</label>
+                        <p><i class="bi bi-heart-pulse"></i> General Checkup</p>
+                    </div>
+
+                </div>
+
+                <hr />
+
+                <div>
+                    <label>Reason for Visit</label>
+                    <p class="text-muted">
+                        Routine health checkup to monitor recovery and overall condition.
+                    </p>
+                </div>
+
+                <div class="mt-3">
+                    <label>Doctor Notes</label>
+                    <p class="text-muted">
+                        Check vitals, weight, and healing progress.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="d-flex gap-3 mt-4">
+            <a href="/Appointment/Edit" class="btn btn-outline-primary flex-fill">Edit</a>
+            <button class="btn btn-success flex-fill">Complete</button>
+            <button class="btn btn-danger flex-fill">Cancel</button>
+        </div>
+
+    </div>
+</div>

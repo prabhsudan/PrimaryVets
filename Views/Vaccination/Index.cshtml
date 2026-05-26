@@ -1,0 +1,180 @@
+﻿<style>
+    body {
+        background: #f5f7fb;
+    }
+
+    .vaccination-table {
+        width: 100%;
+        border-collapse: collapse; /* IMPORTANT for proper borders */
+        font-size: 0.95rem;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+        .vaccination-table th,
+        .vaccination-table td {
+            border: 1px solid #e5e7eb; /* FULL GRID BORDERS */
+            padding: 0.85rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .vaccination-table th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #111;
+        }
+
+        .vaccination-table tbody tr:hover {
+            background: #f9fafb;
+            transition: 0.2s;
+        }
+
+    .status {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .completed {
+        background: #e7f8ee;
+        color: #16a34a;
+    }
+
+    .pending {
+        background: #fff7ed;
+        color: #f97316;
+    }
+
+    .overdue {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+    .action-btn {
+        border: none;
+        background: transparent;
+        color: #2563eb;
+        font-size: 14px;
+        margin: 0 4px;
+        cursor: pointer;
+    }
+
+        .action-btn:hover {
+            color: #1d4ed8;
+        }
+
+    .title {
+        text-align: center;
+        font-weight: 700;
+        margin: 20px 0;
+    }
+</style>
+
+<h2 class="title">Vaccination Records</h2>
+<hr />
+<table class="vaccination-table">
+    <thead>
+        <tr>
+            <th>Pet Name</th>
+            <th>Owner</th>
+            <th>Vaccine</th>
+            <th>Type</th>
+            <th>Due Date</th>
+            <th>Last Given</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Tommy</td>
+            <td>Sarah Jenkins</td>
+            <td>Rabies</td>
+            <td>Core</td>
+            <td>20 May 2026</td>
+            <td>20 May 2025</td>
+            <td><span class="status completed">Completed</span></td>
+            <td>
+                <a asp-controller="Vaccination" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-pencil-square"></i></button>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Luna</td>
+            <td>Michael Chen</td>
+            <td>Distemper</td>
+            <td>Core</td>
+            <td>25 May 2026</td>
+            <td>25 May 2025</td>
+            <td><span class="status pending">Pending</span></td>
+            <td>
+                <a asp-controller="Vaccination" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-pencil-square"></i></button>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Max</td>
+            <td>Emily Davis</td>
+            <td>Parvovirus</td>
+            <td>Core</td>
+            <td>18 May 2026</td>
+            <td>18 May 2025</td>
+            <td><span class="status overdue">Overdue</span></td>
+            <td>
+                <a asp-controller="Vaccination" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-pencil-square"></i></button>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Bella</td>
+            <td>Robert Wilson</td>
+            <td>Hepatitis</td>
+            <td>Core</td>
+            <td>30 May 2026</td>
+            <td>30 May 2025</td>
+            <td><span class="status completed">Completed</span></td>
+            <td>
+                <a asp-controller="Vaccination" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-pencil-square"></i></button>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Oliver</td>
+            <td>Jessica Lee</td>
+            <td>Feline Leukemia</td>
+            <td>Non-Core</td>
+            <td>28 May 2026</td>
+            <td>28 May 2025</td>
+            <td><span class="status pending">Pending</span></td>
+            <td>
+                <a asp-controller="Vaccination" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-pencil-square"></i></button>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

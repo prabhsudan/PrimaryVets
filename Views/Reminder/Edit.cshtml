@@ -1,0 +1,138 @@
+﻿@model PrimaryVets.Models.RemainderViewModel
+
+@{
+    ViewData["Title"] = "Edit Reminder";
+}
+
+<style>
+    body {
+        background-color: #f4f6f9;
+    }
+
+    .reminder-container {
+        max-width: 700px;
+        margin: 40px auto;
+    }
+
+    .reminder-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .page-title {
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+</style>
+
+<div class="container reminder-container">
+
+    <div class="reminder-card">
+
+        <div class="mb-4">
+            <h2 class="page-title">Edit Reminder</h2>
+            <p class="text-muted mb-0">
+                Update reminder details.
+            </p>
+        </div>
+
+        <form asp-action="Edit" asp-controller="Reminder" method="post">
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-md-4">
+                    <label asp-for="Title" class="form-label"> Reminder Title</label>
+                    <input asp-for="Title" class="form-control" placeholder="Enter reminder title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label asp-for="PatientName" class="form-label"> Patient Name </label>
+                    <input asp-for="PatientName" class="form-control" placeholder="Enter patient name" />
+                    <span asp-validation-for="PatientName" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <label asp-for="Subtitle" class="form-label"> Subtitle</label>
+                    <input asp-for="Subtitle" class="form-control" placeholder="Enter reminder subtitle" />
+                    <span asp-validation-for="Subtitle" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-md-4">
+                    <label asp-for="Date" class="form-label"> Reminder Date </label>
+                    <<input asp-for="Date" type="date" class="form-control" id="reminderDate" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label asp-for="Time" class="form-label"> Reminder Time </label>
+                    <input asp-for="Time" type="time" class="form-control" placeholder="Enter reminder time" />
+                    <span asp-validation-for="Time" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label asp-for="Treatment" class="form-label"> Treatment </label>
+                    <input asp-for="Treatment" class="form-control" placeholder="Enter treatment details" />
+                    <span asp-validation-for="Treatment" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Status" class="form-label">Status</label>
+                <select asp-for="Status" class="form-select">
+                    <option value="">Select status</option>
+                    <option value="Upcoming">Upcoming</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                    <option value="Missed">Missed</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="mb-4">
+                <label asp-for="Description" class="form-label"> Description </label>
+                <input asp-for="Description" class="form-control" placeholder="Enter description" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="mb-4">
+                <label asp-for="Notes" class="form-label"> Notes </label>
+                <input asp-for="Notes" class="form-control" placeholder="Enter notes" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                <button type="submit"
+                        class="btn btn-primary"
+                        style="width: 220px; height: 45px;">
+                    Update Reminder
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dateInput = document.getElementById("reminderDate");
+
+            if (dateInput) {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+
+                dateInput.min = `${yyyy}-${mm}-${dd}`;
+            }
+        });
+    </script>
+}

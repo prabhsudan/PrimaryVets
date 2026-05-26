@@ -1,0 +1,134 @@
+.authentication-wrapper {
+  display: flex;
+  flex-basis: 100%;
+  inline-size: 100%;
+  min-block-size: 100vh;
+}
+.authentication-wrapper .authentication-inner {
+  inline-size: 100%;
+}
+.authentication-wrapper.authentication-basic {
+  align-items: center;
+  justify-content: center;
+}
+.authentication-wrapper .auth-cover-illustration {
+  z-index: 1;
+  max-inline-size: 38rem;
+}
+.authentication-wrapper .authentication-image-object-left {
+  position: absolute;
+  inset-block-end: 6%;
+  inset-inline-start: 4%;
+}
+.authentication-wrapper .authentication-image-object-right {
+  position: absolute;
+  inset-block-end: 7%;
+  inset-inline-end: 4%;
+}
+.authentication-wrapper .authentication-image {
+  position: absolute;
+  z-index: -1;
+  inline-size: 100%;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+}
+.authentication-wrapper .authentication-image-model {
+  inline-size: 768px;
+}
+.authentication-wrapper.authentication-cover {
+  align-items: flex-start;
+}
+.authentication-wrapper.authentication-cover .authentication-inner {
+  position: relative;
+  min-block-size: 100vh;
+}
+.authentication-wrapper.authentication-cover .authentication-image {
+  inset-inline-start: unset;
+}
+.authentication-wrapper.authentication-cover .authentication-image-tree {
+  position: absolute;
+  inset-block-end: 4rem;
+  inset-inline-start: 3rem;
+}
+.authentication-wrapper.authentication-basic .authentication-inner {
+  max-inline-size: 460px;
+}
+.authentication-wrapper .auth-input-wrapper .auth-input {
+  max-inline-size: 50px;
+  padding-inline: 0.4rem;
+}
+
+@media (max-width: 575.98px) {
+  .authentication-wrapper .auth-input-wrapper .auth-input {
+    font-size: 1.125rem;
+  }
+}
+@media (max-width: 1199.98px) {
+  .authentication-cover .authentication-image-model {
+    position: relative;
+    inline-size: 575px;
+    inset-block-start: 1rem;
+  }
+}
+.authentication-wrapper .authentication-bg {
+  background-color: #fff;
+}
+
+/* ===============================
+   ORANGE FOCUS + LOGIN BUTTON
+================================ */
+
+/* Input focus border */
+/*.form-control:focus {
+  border-color: #e96f00 !important;*/
+  /*box-shadow: 0 0 0 0.15rem rgba(233, 111, 0, 0.25) !important;*/
+/*}*/
+
+/* Password input-group (input + eye icon) */
+/*.input-group:focus-within .form-control,
+.input-group:focus-within .input-group-text {
+  border-color: #e96f00 !important;
+}*/
+
+/* Remove theme purple glow */
+/*.input-group .form-control:focus {
+  box-shadow: none !important;
+}*/
+
+/* Floating label text */
+/*.form-floating > label {
+  color: #e96f00 !important;
+}*/
+
+/* 🔥 FIX floating-outline TOP border (this was staying purple) */
+/*.form-floating-outline .form-control:focus ~ label::before,
+.form-floating-outline .form-control:focus ~ label::after {
+  border-top-color: #e96f00 !important;
+}*/
+
+/* Login button */
+/*.btn-primary {
+  background-color: #e96f00 !important;
+  border-color: #e96f00 !important;
+}
+
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: #d86500 !important;
+    border-color: #d86500 !important;
+  }*/
+
+/* Checkbox */
+/*.form-check-input:checked {
+  background-color: #e96f00;
+  border-color: #e96f00;
+}*/
+
+/* Links (Forgot Password) */
+/*a {
+  color: #e96f00;
+}
+
+  a:hover {
+    color: #d86500;
+  }*/

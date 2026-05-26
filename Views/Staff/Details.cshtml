@@ -1,0 +1,244 @@
+﻿<style>
+    body {
+        background: #f5f7fb;
+    }
+
+    .staff-card {
+        max-width: 750px;
+        margin: auto;
+        border: none;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        background: white;
+    }
+
+    /* HEADER */
+    .staff-header {
+        background: linear-gradient(135deg, #396afc, #2948ff);
+        padding: 40px 20px 75px;
+        text-align: center;
+        color: white;
+        position: relative;
+    }
+
+    .staff-title {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .staff-subtitle {
+        font-size: 14px;
+        opacity: 0.85;
+    }
+
+    /* STATUS */
+    .status-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        padding: 5px 12px;
+        font-size: 12px;
+        border-radius: 20px;
+        font-weight: 600;
+        color: white;
+        background: #22c55e;
+    }
+
+    /* AVATAR */
+    .staff-avatar {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid white;
+        position: absolute;
+        left: 50%;
+        bottom: -60px;
+        transform: translateX(-50%);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+        background: white;
+    }
+
+    /* BODY */
+    .staff-body {
+        padding: 85px 25px 25px;
+    }
+
+    .section-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #0D52BD;
+        margin: 18px 0 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .info-box {
+        background: #f9fafb;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid #eee;
+    }
+
+    .label {
+        font-size: 12px;
+        color: #6b7280;
+    }
+
+    .value {
+        font-weight: 600;
+        color: #111;
+    }
+
+    /* ACTION BUTTONS */
+    .action-bar {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .btn-action {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        color: white;
+    }
+
+    .btn-call {
+        background: #22c55e;
+    }
+
+    .btn-edit {
+        background: #f59e0b;
+    }
+
+    .btn-task {
+        background: #3b82f6;
+    }
+
+    /* TOP BAR */
+    .header-bar {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        height: 60px;
+        padding: 0 12px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .back-btn {
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 50%;
+        background: #f5f7fb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .page-title {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 18px;
+        font-weight: 700;
+    }
+</style>
+
+<!-- TOP BAR -->
+<div class="header-bar">
+    <button class="back-btn" onclick="history.back()">
+        <i class="bi bi-arrow-left"></i>
+    </button>
+
+    <h2 class="page-title">Staff Details</h2>
+</div>
+
+<br />
+
+<!-- STAFF CARD -->
+<div class="card staff-card">
+
+    <!-- HEADER -->
+    <div class="staff-header">
+
+        <div class="status-badge">On Duty</div>
+
+        <div class="staff-title">Dr. Amit Sharma</div>
+        <div class="staff-subtitle">Veterinarian • Surgery Department</div>
+
+        <img src="~/images/staff.jpg" class="staff-avatar" />
+    </div>
+
+    <!-- BODY -->
+    <div class="staff-body">
+
+        <!-- STAFF INFO -->
+        <div class="section-title">Staff Information</div>
+        <div class="info-grid">
+            <div class="info-box">
+                <div class="label">Employee ID</div>
+                <div class="value">VET-1024</div>
+            </div>
+
+            <div class="info-box">
+                <div class="label">Mobile</div>
+                <div class="value">9876543210</div>
+            </div>
+
+            <div class="info-box">
+                <div class="label">Shift</div>
+                <div class="value">Morning (8AM - 2PM)</div>
+            </div>
+
+            <div class="info-box">
+                <div class="label">Experience</div>
+                <div class="value">6 Years</div>
+            </div>
+        </div>
+
+        <!-- WORK INFO -->
+        <div class="section-title">Work Status</div>
+        <div class="info-grid">
+            <div class="info-box">
+                <div class="label">Current Cases</div>
+                <div class="value">5 Patients</div>
+            </div>
+
+            <div class="info-box">
+                <div class="label">Completed Today</div>
+                <div class="value">3 Treatments</div>
+            </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="action-bar">
+            <button class="btn-action btn-call">
+                <i class="bi bi-telephone"></i> Call
+            </button>
+
+            <button class="btn-action btn-edit">
+                <i class="bi bi-pencil"></i> Edit
+            </button>
+
+            <button class="btn-action btn-task">
+                <i class="bi bi-list-task"></i> Assign Task
+            </button>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background: #f5f7fb;
+        }
+
+        .sidebar-fixed {
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        .rounded-4 {
+            border-radius: 1rem !important;
+        }
+
+        .bg-primary, .btn-primary {
+            background-color: #0D52BD !important;
+            border: none;
+        }
+
+        .text-primary {
+            color: #0D52BD !important;
+        }
+
+        /* STATS GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: #0D52BD;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            min-height: 110px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: 0.2s;
+        }
+
+            .stat-card:hover {
+                transform: translateY(-4px);
+            }
+
+        .stat-icon {
+            font-size: 2rem;
+        }
+
+        .card {
+            border-radius: 12px;
+        }
+
+        .card-header {
+            background: transparent;
+            border-bottom: 1px solid #eee;
+        }
+
+        .stat-card-link {
+            text-decoration: none !important;
+            color: inherit !important;
+            display: block;
+        }
+
+            .stat-card-link:hover {
+                text-decoration: none !important;
+                color: inherit !important;
+            }
+
+        .stat-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .stat-card-link:hover .stat-card {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid px-4 py-4">
+        <div class="row g-4">
+
+            <!-- LEFT CONTENT -->
+            <div class="col-lg-9">
+
+                <h3 class="fw-bold mb-3 border-bottom pb-2">Overview</h3>
+
+                <!-- TOP CARDS -->
+                <div class="stats-grid">
+                    <a href="/Appointment/Index" class="stat-card-link">
+                        <div class="stat-card">
+                            <div>
+                                <small>Appointments</small>
+                                <h4>15</h4>
+                            </div>
+                            <i class="bi bi-people-fill stat-icon"></i>
+                        </div>
+                    </a>
+
+                    <a href="/PetRegistration/Index" class="stat-card-link">
+                        <div class="stat-card">
+                            <div>
+                                <small>Pets</small>
+                                <h4>50</h4>
+                            </div>
+                            <i class="fas fa-dog stat-icon"></i>
+                        </div>
+                    </a>
+                 
+                    <a href="/Reminder/Index" class="stat-card-link">
+                        <div class="stat-card">
+                            <div>
+                                <small>Reminders</small>
+                                <h4>7</h4>
+                            </div>
+                            <i class="bi bi-alarm-fill stat-icon"></i>
+                        </div>
+                    </a>
+                    
+                    <a href="/Vaccination/VaccinationList" class="stat-card-link">
+                        <div class="stat-card">
+                            <div>
+                                <small>Vaccines</small>
+                                <h4>25</h4>
+                            </div>
+                            <i class="fas fa-syringe stat-icon"></i>
+                        </div>
+                    </a>
+                </div>
+                <hr />
+                <h3>Charts</h3>
+                <!-- CHARTS -->
+                <div class="row mt-4">
+                    <div class="col-lg-8 d-flex">
+                        <div class="card shadow w-100">
+                            <div class="card-header">Monthly Revenue</div>
+                            <div class="card-body">
+                                <canvas id="barChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 d-flex">
+                        <div class="card shadow w-100">
+                            <div class="card-header">Distribution</div>
+                            <div class="card-body">
+                                <canvas id="pieChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <h3>Today</h3>
+                <!-- BOTTOM CARDS -->
+                <div class="stats-grid mt-4">
+                    <div class="stat-card">
+                        <div>
+                            <h4>10:00 AM</h4>
+                            <small>Surgery</small>
+                            <h6>Dr. Smith</h6>
+                        </div>
+                        <i class="bi bi-scissors stat-icon"></i>
+                    </div>
+
+                    <div class="stat-card">
+                        <div>
+                            <h4>12:00 PM</h4>
+                            <small>Checkup</small>
+                            <h6>Dr. Adams</h6>
+                        </div>
+                        <i class="bi bi-heart-pulse-fill stat-icon"></i>
+                    </div>
+
+                    <div class="stat-card">
+                        <div>
+                            <h4>2:00 PM</h4>
+                            <small>Vaccination</small>
+                            <h6>Dr. Lee</h6>
+                        </div>
+                        <i class="bi bi-shield-check stat-icon"></i>
+                    </div>
+
+                    <div class="stat-card">
+                        <div>
+                            <h4>5:00 PM</h4>
+                            <small>Emergency</small>
+                            <h6>Dr. Clark</h6>
+                        </div>
+                        <i class="bi bi-exclamation-triangle-fill stat-icon"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-3">
+                <div class="sidebar-fixed">
+                    <div class="bg-white p-4 rounded-4 shadow-sm border h-100">
+                        <div class="bg-white p-3 rounded-4 shadow-sm border">
+
+                            <div id="petCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+
+                                <div class="carousel-inner text-center">
+
+                                    <!-- PET 1 -->
+                                    <div class="carousel-item active">
+                                        <img src="~/images/Tommy.jpg" class="rounded-circle mb-2 shadow" width="80" height="80">
+                                        <h5 class="fw-bold mb-1">Tommy</h5>
+
+                                        <div class="row g-2 text-start small mt-2">
+                                            <div class="col-6"><span class="text-muted">Type:</span><br><strong>Dog</strong></div>
+                                            <div class="col-6"><span class="text-muted">Gender:</span><br><strong>Male</strong></div>
+                                            <div class="col-6"><span class="text-muted">Age:</span><br><strong>8 y.o.</strong></div>
+                                            <div class="col-6"><span class="text-muted">Breed:</span><br><strong>Labrador</strong></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- PET 2 -->
+                                    <div class="carousel-item">
+                                        <img src="~/images/cat.jpg" class="rounded-circle mb-2 shadow" width="80" height="80">
+                                        <h5 class="fw-bold mb-1">Mia</h5>
+
+                                        <div class="row g-2 text-start small mt-2">
+                                            <div class="col-6"><span class="text-muted">Type:</span><br><strong>Cat</strong></div>
+                                            <div class="col-6"><span class="text-muted">Gender:</span><br><strong>Female</strong></div>
+                                            <div class="col-6"><span class="text-muted">Age:</span><br><strong>4 y.o.</strong></div>
+                                            <div class="col-6"><span class="text-muted">Breed:</span><br><strong>Abyssinian</strong></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- PET 3 -->
+                                    <div class="carousel-item">
+                                        <img src="~/images/dog2.jpg" class="rounded-circle mb-2 shadow" width="80" height="80">
+                                        <h5 class="fw-bold mb-1">Jimmy</h5>
+
+                                        <div class="row g-2 text-start small mt-2">
+                                            <div class="col-6"><span class="text-muted">Type:</span><br><strong>Dog</strong></div>
+                                            <div class="col-6"><span class="text-muted">Gender:</span><br><strong>Male</strong></div>
+                                            <div class="col-6"><span class="text-muted">Age:</span><br><strong>2 y.o.</strong></div>
+                                            <div class="col-6"><span class="text-muted">Breed:</span><br><strong>Bulldog</strong></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- LEFT / RIGHT BUTTONS -->
+                                <button class="carousel-control-prev" type="button" data-bs-target="#petCarousel" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon bg-dark rounded-circle p-2"></span>
+                                </button>
+
+                                <button class="carousel-control-next" type="button" data-bs-target="#petCarousel" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon bg-dark rounded-circle p-2"></span>
+                                </button>
+
+                            </div>
+
+                        </div>
+                        <hr />
+                        <!-- Weekly Calendar -->
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6 class="fw-bold mb-0">March</h6>
+                                <i class="bi bi-chevron-right small text-muted"></i>
+                            </div>
+                            <div class="d-flex justify-content-between text-center pb-2">
+                                <div class="p-1"><small class="text-muted d-block">Sun</small>17</div>
+                                <div class="p-1 bg-primary text-white rounded-3 shadow-sm" style="min-width: 35px;">
+                                    <small class="d-block opacity-75">Mon</small><b>18</b>
+                                </div>
+                                <div class="p-1"><small class="text-muted d-block">Tu</small>19</div>
+                                <div class="p-1"><small class="text-muted d-block">Wed</small>20</div>
+                                <div class="p-1"><small class="text-muted d-block">Th</small>21</div>
+                            </div>
+                        </div>
+                        <hr />
+                        <!-- Appointments -->
+                        <div class="mb-4">
+                            <div class="card bg-primary text-white border-0 rounded-4 p-3 shadow-sm mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <i class="bi bi-bell-fill"></i>
+                                    <div>
+                                        <h6 class="mb-0 small fw-bold">Surgery</h6>
+                                        <small class="opacity-75">Dr. Smith</small>
+                                    </div>
+                                    <i class="bi bi-chevron-right"></i>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center mb-2 px-2">
+                                <i class="bi bi-bell-fill text-primary me-3"></i>
+                                <div>
+                                    <h6 class="mb-0 small fw-bold">Vaccination</h6>
+                                    <small class="text-muted">Dr. John</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary w-100 rounded-pill fw-bold shadow-sm py-2">Book appointment</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Jan','Feb','Mar','Apr'],
+                datasets: [{ data: [22,19,15,17] }]
+            }
+        });
+
+        new Chart(document.getElementById('pieChart'), {
+            type: 'pie',
+            data: {
+                labels: ['A','B','C'],
+                datasets: [{ data: [25,40,35] }]
+            }
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+﻿<style>
+    body {
+        background: #f5f7fb;
+    }
+
+    .staff-table {
+        width: 100%;
+        border-collapse: collapse; /* IMPORTANT for proper borders */
+        font-size: 0.95rem;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+        .staff-table th,
+        .staff-table td {
+            border: 1px solid #e5e7eb; /* FULL GRID BORDERS */
+            padding: 0.85rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .staff-table th {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: #111;
+        }
+
+        .staff-table tbody tr:hover {
+            background: #f9fafb;
+            transition: 0.2s;
+        }
+
+    .status-badge {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .active {
+        background: #e7f8ee;
+        color: #16a34a;
+    }
+
+    .inactive {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+    .onleave {
+        background: #fff7ed;
+        color: #f97316;
+    }
+
+    .action-btn {
+        border: none;
+        background: transparent;
+        color: #2563eb;
+        font-size: 14px;
+        margin: 0 4px;
+        cursor: pointer;
+    }
+
+        .action-btn:hover {
+            color: #1d4ed8;
+        }
+
+    .title {
+        text-align: center;
+        font-weight: 700;
+        margin: 20px 0;
+    }
+</style>
+
+<h2 class="title">Staff Management</h2>
+<hr />
+<table class="staff-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Sarah Jenkins</td>
+            <td>Veterinarian</td>
+            <td>Surgery</td>
+            <td>sarah@clinic.com</td>
+            <td>+1 555-0102</td>
+            <td><span class="status-badge active">Active</span></td>
+            <td>
+                <a asp-controller="Staff" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-pencil-square"></i></button>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Michael Chen</td>
+            <td>Assistant</td>
+            <td>Dermatology</td>
+            <td>michael@clinic.com</td>
+            <td>+1 555-0148</td>
+            <td><span class="status-badge onleave">Inactive</span></td>
+            <td>
+                <a asp-controller="Staff" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-pencil-square"></i></button>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Emily Davis</td>
+            <td>Nurse</td>
+            <td>Dental</td>
+            <td>emily@clinic.com</td>
+            <td>+1 555-0199</td>
+            <td><span class="status-badge active">Active</span></td>
+            <td>
+                <a asp-controller="Staff" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-pencil-square"></i></button>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Robert Wilson</td>
+            <td>Technician</td>
+            <td>ENT</td>
+            <td>robert@clinic.com</td>
+            <td>+1 555-0123</td>
+            <td><span class="status-badge inactive">Inactive</span></td>
+            <td>
+                <a asp-controller="Staff" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-pencil-square"></i></button>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Jessica Lee</td>
+            <td>Receptionist</td>
+            <td>Front Desk</td>
+            <td>jessica@clinic.com</td>
+            <td>+1 555-0175</td>
+            <td><span class="status-badge active">Active</span></td>
+            <td>
+                <a asp-controller="Staff" asp-action="Details" class="btn btn-sm" style="color:#0D52BD">
+                    <i class="bi bi-eye-fill"></i>
+                </a>
+                <button class="action-btn"><i class="bi bi-pencil-square"></i></button>
+                <button class="action-btn"><i class="bi bi-trash-fill"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

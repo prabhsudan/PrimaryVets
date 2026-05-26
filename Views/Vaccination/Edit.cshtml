@@ -1,0 +1,91 @@
+﻿@model PrimaryVets.Models.VaccinationModel
+
+@{
+    ViewData["Title"] = "Edit Vaccination";
+}
+
+<style>
+    body {
+        background-color: #f4f6f9;
+    }
+
+    .vaccination-container {
+        max-width: 700px;
+        margin: 40px auto;
+    }
+
+    .vaccination-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .page-title {
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+</style>
+
+<div class="container vaccination-container">
+
+    <div class="vaccination-card">
+
+        <div class="mb-4">
+            <h2 class="page-title">Edit Vaccination</h2>
+            <p class="text-muted mb-0">
+                Update vaccination details and stock information.
+            </p>
+        </div>
+
+        <form asp-action="Edit" asp-controller="Vaccination" method="post">
+
+            <div class="mb-3">
+                <label asp-for="VaccinationName" class="form-label"> Vaccination Name</label>
+                <input asp-for="VaccinationName" class="form-control" placeholder="Enter vaccine name" />
+                <span asp-validation-for="VaccinationName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Use" class="form-label"> Use </label>
+
+                <input asp-for="Use" class="form-control" placeholder="Core / Non-Core Vaccine" />
+
+                <span asp-validation-for="Use" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Benefits" class="form-label"> Benefits</label>
+                <textarea asp-for="Benefits" class="form-control" rows="3" placeholder="Enter vaccination benefits"></textarea>
+                <span asp-validation-for="Benefits" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Stock" class="form-label"> Available Stock </label>
+                <input asp-for="Stock" type="number" class="form-control" placeholder="Enter available stock" />
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-center mt-4">
+                <button type="submit"
+                        class="btn btn-primary"
+                        style="width: 220px; height: 45px;">
+                    Update Vaccination
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+}
