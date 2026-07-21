@@ -3,8 +3,9 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-# This workflow will build and test an ASP.NET Core application
-# built on .NET 8.
+# This workflow builds, tests, and creates a Docker image
+# for an ASP.NET Core application built on .NET 8.
+#
 # To learn more about ASP.NET Core and .NET,
 # refer to https://dotnet.microsoft.com/en-us/apps/aspnet
 #
@@ -15,8 +16,7 @@
 # Replace the variables relative to your project in the "env" section below.
 #
 # 2. Docker
-# If you want to build and deploy your application using Docker,
-# make sure your Dockerfile exists in the root directory of the repository.
+# Make sure your Dockerfile exists in the root directory of the repository.
 #
 # For more information on GitHub Actions, refer to https://github.com/features/actions
 # For a complete CI/CD sample to get started with GitHub Actions,
@@ -26,10 +26,12 @@ name: PrimaryVets CI/CD
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
 
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
 
 jobs:
 
@@ -37,17 +39,18 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        configuration:
+          - Release
 
-    runs-on: windows-latest  # For a list of available runner types, refer to
-                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    runs-on: windows-latest
 
     env:
-      Solution_Name: PrimaryVets.sln  # Replace with your solution name, i.e. MyWpfApp.sln.
+      Solution_Name: PrimaryVets.sln
       Configuration: ${{ matrix.configuration }}
 
     steps:
 
+    # Checkout the source code
     - name: Checkout
       uses: actions/checkout@v4
       with:
@@ -59,11 +62,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    # Add MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v2
-
-    # Restore the application to populate the obj folder
+    # Restore NuGet packages
     - name: Restore the application
       run: dotnet restore $env:Solution_Name
 
