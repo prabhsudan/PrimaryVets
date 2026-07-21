@@ -29,16 +29,18 @@
 		<None Include="wwwroot\uploads\**" CopyToPublishDirectory="Never" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Remove="ffmpeg\bin\ffmpeg.exe" />
-	</ItemGroup>
+	<!--
+<ItemGroup>
+  <None Remove="ffmpeg\bin\ffmpeg.exe" />
+</ItemGroup>
 
-	<ItemGroup>
-	  <Content Include="ffmpeg\bin\ffmpeg.exe">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Content>
-	</ItemGroup>
-	
+<ItemGroup>
+  <Content Include="ffmpeg\bin\ffmpeg.exe">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+</ItemGroup>
+-->
+
   <ItemGroup>
     <Folder Include="wwwroot\uploads\" />
     <Folder Include="wwwroot\uploads\audio\" />
