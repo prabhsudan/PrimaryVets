@@ -42,7 +42,7 @@ jobs:
         configuration:
           - Release
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     env:
       Solution_Name: PrimaryVets.sln
