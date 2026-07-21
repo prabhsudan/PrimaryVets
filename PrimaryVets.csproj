@@ -4,9 +4,6 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>d1c28abf-b596-4125-a7f1-b8864cbef274</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +16,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
     <PackageReference Include="Whisper.net" Version="1.9.0" />
@@ -32,17 +28,16 @@
 		<Content Remove="wwwroot\uploads\**" />
 		<None Include="wwwroot\uploads\**" CopyToPublishDirectory="Never" />
 	</ItemGroup>
-<!--
-<ItemGroup>
-  <None Remove="ffmpeg\bin\ffmpeg.exe" />
-</ItemGroup>
 
-<ItemGroup>
-  <Content Include="ffmpeg\bin\ffmpeg.exe">
-    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-  </Content>
-</ItemGroup>
--->
+	<ItemGroup>
+	  <None Remove="ffmpeg\bin\ffmpeg.exe" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="ffmpeg\bin\ffmpeg.exe">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
 	
   <ItemGroup>
     <Folder Include="wwwroot\uploads\" />
